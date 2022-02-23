@@ -1,7 +1,6 @@
 import uuid
 from django.db import models
 from enum import Enum
-from myapp.utils import *
 
 class ChoiceEnum(Enum):
     @classmethod
