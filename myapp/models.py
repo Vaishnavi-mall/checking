@@ -1,3 +1,5 @@
+from operator import truediv
+from statistics import mode
 import uuid
 from django.db import models
 from enum import Enum
@@ -31,9 +33,13 @@ class BaseModel(models.Model):
 
 class TechFest(BaseModel):
     name = models.CharField(max_length=100)
-    short_description = models.CharField(max_length=100)
+    short_description = models.CharField(max_length=600)
     description = models.TextField()
-    logo = models.ImageField()
+    society_logo = models.ImageField(null=True)
+    college_logo= models.ImageField(null=True)
+    university_logo=models.ImageField(null=True)
+    fest_image=models.ImageField(null=True)
+    fest_video = models.FileField(null =True)
     start_date = models.DateField()
     end_date = models.DateField()
     email = models.CharField(max_length=50)
@@ -60,6 +66,8 @@ class Events(BaseModel):
     stages = models.IntegerField()
     event_start_time = models.TimeField()
     event_end_time = models.TimeField()
+    event_image = models.ImageField(upload_to="event/images", null=True)
+    event_video = models.FileField(upload_to="event/videos", null=True)
 
     class Meta:
         ordering = ('name',)
@@ -84,7 +92,7 @@ class Videos(BaseModel):
     """ US : 11 """
     event = models.ForeignKey(Events, on_delete=models.CASCADE, related_name='event_videos')
     name = models.CharField(max_length=100)
-    video = models.ImageField(upload_to="event/videos", null=True)
+    video = models.FileField(upload_to="event/videos", null=True)
 
     class Meta:
         ordering = ('-created_at',)
@@ -132,7 +140,7 @@ class Speakers(BaseModel):
 
 class Sponsors(BaseModel):
     name = models.CharField(max_length=100)
-    models.ImageField(upload_to="event/sponsors_images", null=True)
+    image= models.ImageField(upload_to="event/sponsors_images", null=True)
     class Meta:
         ordering = ('name',)
         verbose_name_plural = 'Sponsors'
@@ -145,7 +153,7 @@ class Sponsors(BaseModel):
 class StudentCouncilMembers(BaseModel):
     name = models.CharField(max_length=100)
     position = models.CharField(max_length=50,choices=PositionType.get_choices())
-    models.ImageField(upload_to="event/student_council_images", null=True)
+    image= models.ImageField(upload_to="event/student_council_images", null=True)
     class Meta:
         ordering = ('name',)
         verbose_name_plural = 'Student Council Members'
