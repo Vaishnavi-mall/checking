@@ -45,3 +45,8 @@ class SpeakersAdmin(admin.ModelAdmin):
 class SponsorsAdmin(admin.ModelAdmin):
     show_full_result_count = True
     list_display = ('name',)
+
+@admin.register(EventsTimeLine)
+class EventsTimeLineAdmin(admin.ModelAdmin):
+    show_full_result_count = True
+    list_display = ('content',)
