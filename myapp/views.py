@@ -38,3 +38,17 @@ class ContactView(View):
     def get(self, request, **kwargs):
         techFest = TechFest.objects.all()
         return render(request, template_name="contact.html", context={'techFest': techFest})
+
+class EventsView(View):
+    template_name = 'events.html'
+
+    def get(self, request, **kwargs):
+        events = Events.objects.all()
+        return render(request, template_name="events.html", context={'events':events})
+
+class EventView(View):
+    template_name = 'event.html'
+
+    def get(self, request, **kwargs):
+        event = Events.objects.get(id=kwargs['event_id'])
+        return render(request, template_name="event.html", context={'event':event})
