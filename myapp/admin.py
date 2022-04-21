@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
+from django_summernote.admin import SummernoteModelAdmin
 
 from myapp.models import *
 
@@ -10,7 +11,8 @@ admin.site.unregister(Group)
 
 
 @admin.register(TechFest)
-class TechFestAdmin(admin.ModelAdmin):
+class TechFestAdmin(SummernoteModelAdmin):
+    summernote_fields = ('description',)
     show_full_result_count = True
     list_display = ('name', 'start_date', 'end_date')
 

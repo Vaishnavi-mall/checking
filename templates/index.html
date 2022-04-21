@@ -159,7 +159,7 @@
 <body>
     {% for i in techFest %}
     <nav class="navbar navbar-light bg-light navbar-expand-lg mynavbar">
-        <img class="navbar-img" src="media/{{i.society_logo}}">
+        <img class="navbar-img" src="{{i.society_logo.url }}">
         <div style="margin-left: 15px;text-align: left;margin-top: 15px;">
             <span class="navbar-heading"><b>Tech Melange</b></span><br>
             <span class="text-uppercase" style="line-height: 0;">Most Awaited Technical Fest</span>
@@ -167,10 +167,10 @@
         <div class="collapse navbar-collapse navbarNav">
             <ul class="navbar-nav navbar-links">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="">Home</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">About Us</a>
+                    <a class="nav-link" href="about-us/">About Us</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Event Timeline</a>
@@ -187,23 +187,23 @@
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Student Council</a>
+                    <a class="nav-link" href="student-council/">Student Council</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="contact/">Contact</a>
                 </li>
             </ul>
         </div>
     </nav>
     <div class="first-part row">
         <div class="col">
-            <img class="college-logo" src="media/{{i.college_logo}}">
+            <img class="college-logo" src="{{i.college_logo.url }}">
         </div>
         <div class="col">
             <h1 class="text-uppercase first-part-heading"><b>{{ i.name }}</b></h1>
         </div>
         <div class="col" style="text-align: right; padding: 0;">
-            <img class="university-logo" src="media/{{i.university_logo}}">
+            <img class="university-logo" src="{{i.university_logo.url }}">
         </div>
     </div>
     <div class="second-part row">
@@ -211,7 +211,7 @@
     </div>
     <div class="third-part row">
         <video class="third-part-video" width="320" height="240" controls>
-            <source src="media/{{i.fest_video}}" type="video/mp4">
+            <source src="{{i.fest_video.url }}" type="video/mp4">
           </video>
     </div>
     <div class="fourth-part row mt-5">
@@ -223,11 +223,11 @@
                 {{ i.description|linebreaksbr|truncatewords:117 }}
             </p>
             <div style="text-align:center;margin-top:50px;">
-                <button type="button" class="btn btn-primary btn-lg read-more-btn">Read More</button>
+                <a href="about-us/"><button type="button" class="btn btn-primary btn-lg read-more-btn">Read More</button></a>
             </div>
         </div>
         <div class="col-4 fourth-part-second-col">
-            <img src="media//{{i.fest_image}}">
+            <img src="{ {i.fest_image.url }}">
         </div>
     </div>
     <div class="fifth-part mt-5">
@@ -237,7 +237,7 @@
         {% for event in events %} {% if forloop.counter|divisibleby:"4" %}
         <br> {% endif %}
         <div style="display: inline-block;">
-            <img src="media/{{ event.event_image }}" style="height: 400px;width:400px;padding:30px;"><br>
+            <img src="{{ event.event_image.url }}" style="height: 400px;width:400px;padding:30px;"><br>
             <button type="button" class="btn btn-primary btn-lg read-more-btn">Register Now</button>
         </div>
         {% endfor %}
@@ -250,7 +250,7 @@
         {% for speaker in speakers %} {% if forloop.counter|divisibleby:"4" %}
         <br> {% endif %}
         <div style="display:inline-block;">
-            <img src="media/{{ speaker.image }}" style="height: 250px;width:250px;border-radius: 150px;margin-right:200px;"><br>
+            <img src="{{ speaker.image.url }}" style="height: 250px;width:250px;border-radius: 150px;margin-right:200px;"><br>
             <p class="mt-3" style="font-family: 'Times New Roman', Times, serif;font-size: 28px;">{{ speaker.name }}</p>
         </div>
         {% endfor %}
@@ -262,7 +262,7 @@
         {% for sponsor in sponsors %} {% if forloop.counter|divisibleby:"4" %}
         <br> {% endif %}
         <div style="display :inline-block;">
-            <img src="media/{{ sponsor.image }}" style="height: 200px;width:200px;border-radius: 100px;margin-right:200px;"><br>
+            <img src="{{ sponsor.image.url }}" style="height: 200px;width:200px;border-radius: 100px;margin-right:200px;"><br>
             <p class="mt-3" style="font-family: 'Times New Roman', Times, serif;font-size: 28px;">{{ sponsor.name }}</p>
         </div>
         {% endfor %}

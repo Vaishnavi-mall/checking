@@ -16,3 +16,25 @@ class LandingPageView(View):
         speakers = Speakers.objects.all()
         sponsors = Sponsors.objects.all()
         return render(request, template_name="index.html", context={'techFest': techFest,'events':events,'speakers':speakers,'sponsors':sponsors})
+
+class AboutUsView(View):
+    template_name = 'about-us.html'
+
+    def get(self, request, **kwargs):
+        techFest = TechFest.objects.all()
+        return render(request, template_name="about-us.html", context={'techFest': techFest})
+
+
+class StudentCouncilView(View):
+    template_name = 'student-council.html'
+
+    def get(self, request, **kwargs):
+        studentCouncil = StudentCouncilMembers.objects.all()
+        return render(request, template_name="student-council.html", context={'studentCouncil' : studentCouncil})
+    
+class ContactView(View):
+    template_name = 'contact.html'
+
+    def get(self, request, **kwargs):
+        techFest = TechFest.objects.all()
+        return render(request, template_name="contact.html", context={'techFest': techFest})
