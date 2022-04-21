@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}
+Student Council
+{% endblock title %}
+{% block content %}
+
+<div class="main-content text-size">
+    <span class="heading-1"><b>Student Council</b></span><br>
+    {% for i in studentCouncil %} {% if forloop.counter|divisibleby:"4" %}
+    <br> {% endif %}
+    <div style="display:inline-block;">
+        <img src="{{ i.image.url }}" style="height:400px;width:400px;padding:30px;"><br>
+     <b>
+        {{ i.name }}
+     </b><br>
+       <span class="text-size-small">{{ i.get_position_display }}</span>
+    </div>
+    {% endfor %}
+    <br>
+    <br>
+    {% if designTeam %}
+    <span class="heading-1"><b>Design Team</b></span><br>
+    {% for i in designTeam %} 
+    <div style="display: inline-block;">
+        <img src="{{ i.image.url }}" style="height: 400px;width:400px;padding:30px;"><br>
+     <b>
+        {{ i.name }}
+     </b><br>
+       <span class="text-size-small">{{ i.get_position_display }}</span>
+    </div>
+    {% if forloop.first %}
+    <br> {% endif %}
+    {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}
+   

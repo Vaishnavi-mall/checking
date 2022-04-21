@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}
+Home
+{% endblock title %}
+{% block content %}
+    <div class="main-content">
+        <span class="heading-1"><b>Events</b></span><br>
+        {% for event in events %} {% if forloop.counter|divisibleby:"4" %}
+        <br> {% endif %}
+        <div style="display:inline-block;">
+            <img src="{{ event.event_image.url }}" style="height: 400px;width:400px;padding:30px;"><br>
+            <button type="button" class="btn btn-primary btn-lg read-more-btn;text-size-small"><a href="{% url 'event' event.id %}" style="color:white">Read More</a></button>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

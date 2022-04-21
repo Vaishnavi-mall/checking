@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}
+Home
+{% endblock title %}
+{% block content %}
+<div class="main-content">
+  <span><b>{{ event.name }}</b></span><br>
+  <video width="1180" height="480" controls autoplay>
+    <source src="{{ event.event_video.url }}" type="video/mp4">
+  </video>
+  <br>
+  <div class="row">
+    <div class="col offset-1 text-justify ">
+      <span class="heading-1"><b>Description</b></span><br>
+      <p>
+        {{ event.description }}
+      </p>
+    </div>
+    <div class="col pr-0 mr-0">
+      <img src="{{ event.event_image.url }}" width="95%" height="100%"><br>   
+    </div>
+    <div class="col-1"></div>
+    <div class="row text-justify">
+      <div class="col-10 offset-1" style="width:90%">
+        <span class="heading-1"><b>Rules</b></span><br>
+        {{ event.rules }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4 offset-4 mt-5">
+      <button type="button" class="btn btn-primary btn-lg read-more-btn text-size-small"><a href="https://{{ event.link }}"  target="_blank" style="color:white;">Register Now</a></button>
+  
+    </div>
+  </div>
+  <br>
+  <span class="heading-1"><b>Student Coordinators</b></span><br>
+  <div>
+    {% for s in studentCoordinators %} 
+    <div class="add-spacing" style="display:inline-block;">
+        <img src="{{ s.image.url }}" style="height: 250px;width:250px;border-radius: 150px;"><br>
+        <p class="text-size-small mt-3">{{ s.name }}</p>
+    </div>
+    {% endfor %}
+</div>
+<span class="heading-1"><b>Teacher Coordinators</b></span><br>
+<div>
+  {% for t in teacherCoordinators %} 
+  <div class="add-spacing" style="display:inline-block;">
+      <img src="{{ t.image.url }}" style="height: 250px;width:250px;border-radius: 150px;"><br>
+      <p class="text-size-small mt-3">{{ t.name }}<br>{{ t.position }}</p>
+  </div>
+  {% endfor %}
+</div>
+</div>
+{% endblock %}

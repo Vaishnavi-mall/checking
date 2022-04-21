@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}
+Home
+{% endblock title %}
+{% block content %}
+{% for i in techFest %}
+    <div class="first-part row">
+        <div class="col">
+            <img class="college-logo" src="{{i.college_logo.url }}">
+        </div>
+        <div class="col">
+            <h1 class="text-uppercase first-part-heading"><b>{{ i.name }}</b></h1>
+        </div>
+        <div class="col" style="text-align: right; padding: 0;">
+            <img class="university-logo" src="{{i.university_logo.url }}">
+        </div>
+    </div>
+    <div class="second-part row">
+        {{ i.short_description }}
+    </div>
+    <div class="third-part row">
+        <video class="third-part-video" width="320" height="240" controls>
+            <source src="{{i.fest_video.url }}" type="video/mp4">
+          </video>
+    </div>
+    <div class="fourth-part row mt-5">
+        <div class="col-7 fourth-part-first-col bg-light">
+            <p class="about-us text-uppercase">
+                About Us
+            </p>
+            <p class="about-us-description">
+                {{ i.description|striptags|linebreaksbr|truncatewords:117 }}
+            </p>
+            <div style="text-align:center;margin-top:50px;">
+                <a href="about-us/"><button type="button" class="text-size-small btn btn-primary btn-lg read-more-btn">Read More</button></a>
+            </div>
+        </div>
+        <div class="col-4 fourth-part-second-col">
+            <img src="{{i.fest_image.url }}">
+        </div>
+    </div>
+    <div class="main-content mt-5">
+        <h1 class="heading-1 text-uppercase">Events</h1>
+    </div>
+    <div class="main-content mt-5">
+        {% for event in events %} {% if forloop.counter|divisibleby:"4" %}
+        <br> {% endif %}
+        <div style="display: inline-block;">
+            <img src="{{ event.event_image.url }}" style="height: 400px;width:400px;padding:30px;"><br>
+            <button type="button" class="btn btn-primary btn-lg read-more-btn text-size-small"><a href="{{ event.link }}"  style="color: white;">Register Now</a></button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="main-content mt-5">
+        <h1 class="heading-1 text-uppercase">Speakers</h1>
+    </div>
+    <div class="main-content">
+        {% for speaker in speakers %} {% if forloop.counter|divisibleby:"4" %}
+        <br> {% endif %}
+        <div class="add-spacing" style="display:inline-block;">
+            <img src="{{ speaker.image.url }}" style="height: 250px;width:250px;border-radius: 150px;"><br>
+            <p class="text-size-small mt-3">{{ speaker.name }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="main-content mt-5">
+        <h1 class="heading-1 text-uppercase">Media Partners and Sponsors</h1>
+    </div>
+    <div class="main-content">
+        {% for sponsor in sponsors %} {% if forloop.counter|divisibleby:"4" %}
+        <br> {% endif %}
+        <div class="add-spacing" style="display:inline-block;">
+            <img src="{{ sponsor.image.url }}" style="height: 250px;width:250px;border-radius: 150px;"><br>
+            <p class="text-size-small mt-3">{{ sponsor.name }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+{% endblock %}
+   

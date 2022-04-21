@@ -1,0 +1,1 @@
+web: gunicorn latest_techmelange.wsgi --log-file -
